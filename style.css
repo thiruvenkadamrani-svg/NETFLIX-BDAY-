@@ -1766,3 +1766,351 @@ button {
     }
 
 }
+/* =====================================================
+   UPGRADE 7 — BIRTHDAY FINALE
+===================================================== */
+
+.finale {
+    position: relative;
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #24170a 0%,
+            #0a0703 40%,
+            #000000 75%
+        );
+}
+
+
+/* Golden cinematic glow */
+
+.finale::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 700px;
+    height: 700px;
+
+    left: 50%;
+    top: 50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255, 190, 70, 0.16),
+            transparent 65%
+        );
+
+    filter: blur(35px);
+
+    animation:
+        finaleGlow
+        5s ease-in-out
+        infinite alternate;
+
+    pointer-events: none;
+}
+
+
+/* Keep content above glow */
+
+.finale > * {
+
+    position: relative;
+
+    z-index: 2;
+
+}
+
+
+/* Date */
+
+.finale .date {
+
+    font-size: 15px;
+
+    letter-spacing: 7px;
+
+    color: #c9a86a;
+
+    opacity: 0;
+
+    animation:
+        finaleFade
+        1.5s ease
+        forwards;
+
+}
+
+
+/* Main title */
+
+.finale h1 {
+
+    background:
+        linear-gradient(
+            90deg,
+            #ffffff,
+            #ffe4a3,
+            #ffffff
+        );
+
+    -webkit-background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+
+    text-shadow:
+        0 0 40px
+        rgba(255, 200, 100, 0.15);
+
+    opacity: 0;
+
+    animation:
+        finaleTitle
+        1.8s ease
+        0.3s
+        forwards;
+
+}
+
+
+/* Birthday message */
+
+.birthday-message {
+
+    opacity: 0;
+
+    transform:
+        translateY(25px);
+
+    animation:
+        finaleMessage
+        1.5s ease
+        1s
+        forwards;
+
+}
+
+
+/* =====================================================
+   SUNSHINE REVEAL
+===================================================== */
+
+.reveal {
+
+    position: relative;
+
+    margin-top: 90px;
+
+    opacity: 0;
+
+    animation:
+        sunshineReveal
+        2s ease
+        2s
+        forwards;
+
+}
+
+
+.reveal::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 250px;
+    height: 250px;
+
+    left: 50%;
+    top: 50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255, 200, 100, 0.18),
+            transparent 70%
+        );
+
+    filter: blur(20px);
+
+    z-index: -1;
+
+}
+
+
+.reveal h2 {
+
+    font-size:
+        clamp(50px, 8vw, 100px);
+
+    letter-spacing:
+        5px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #fff,
+            #ffd36b,
+            #fff
+        );
+
+    -webkit-background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+
+}
+
+
+/* =====================================================
+   FINALE ANIMATIONS
+===================================================== */
+
+@keyframes finaleGlow {
+
+    from {
+
+        transform:
+            translate(-50%, -50%)
+            scale(0.9);
+
+        opacity: 0.6;
+
+    }
+
+    to {
+
+        transform:
+            translate(-50%, -50%)
+            scale(1.15);
+
+        opacity: 1;
+
+    }
+
+}
+
+
+@keyframes finaleFade {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(15px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+
+@keyframes finaleTitle {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            scale(1.08)
+            translateY(20px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            scale(1)
+            translateY(0);
+
+    }
+
+}
+
+
+@keyframes finaleMessage {
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+
+@keyframes sunshineReveal {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(30px)
+            scale(0.95);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+    }
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 700px) {
+
+    .finale {
+
+        padding:
+            100px 25px;
+
+    }
+
+    .finale .date {
+
+        letter-spacing: 4px;
+
+    }
+
+    .reveal {
+
+        margin-top: 60px;
+
+    }
+
+}
