@@ -1,0 +1,573 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #050505;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* LOADING */
+
+#loading-screen {
+    position: fixed;
+    inset: 0;
+    background: #000;
+    z-index: 9999;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    animation: fadeOut 2s ease forwards;
+    animation-delay: 3s;
+}
+
+.netflix-text {
+    font-size: 14px;
+    letter-spacing: 5px;
+    opacity: 0.8;
+}
+
+.loading-title {
+    margin-top: 25px;
+    font-size: 60px;
+    font-weight: bold;
+    letter-spacing: 8px;
+    opacity: 0;
+
+    animation: titleAppear 2s ease forwards;
+    animation-delay: 1s;
+}
+
+
+/* HERO */
+
+.hero {
+    min-height: 100vh;
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    background:
+        radial-gradient(
+            circle at 70% 40%,
+            #3a0808,
+            #090909 55%,
+            #000
+        );
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(0,0,0,0.95),
+            rgba(0,0,0,0.55),
+            rgba(0,0,0,0.9)
+        );
+}
+
+.hero-content {
+    position: relative;
+
+    max-width: 700px;
+    padding: 60px;
+}
+
+.original {
+    color: #e50914;
+
+    font-size: 14px;
+
+    letter-spacing: 4px;
+
+    margin-bottom: 15px;
+}
+
+.hero h1 {
+    font-size: clamp(55px, 9vw, 110px);
+
+    letter-spacing: 8px;
+
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    font-size: 22px;
+    color: #ccc;
+
+    margin-bottom: 25px;
+}
+
+.details {
+    display: flex;
+    gap: 20px;
+
+    font-size: 14px;
+
+    color: #aaa;
+
+    margin-bottom: 25px;
+}
+
+.description {
+    line-height: 1.8;
+
+    max-width: 520px;
+
+    color: #ddd;
+
+    margin-bottom: 30px;
+}
+
+
+/* BUTTONS */
+
+button {
+    border: none;
+
+    padding: 13px 25px;
+
+    margin-right: 10px;
+
+    border-radius: 4px;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.play-button {
+    background: white;
+    color: black;
+}
+
+.info-button {
+    background: rgba(100,100,100,0.7);
+    color: white;
+}
+
+button:hover {
+    transform: scale(1.04);
+}
+
+
+/* STORY */
+
+.story-section,
+.episode,
+.finale,
+.post-credit {
+
+    min-height: 100vh;
+
+    padding: 100px 12%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: flex-start;
+
+    border-top: 1px solid #151515;
+}
+
+.episode-number {
+    color: #e50914;
+
+    letter-spacing: 4px;
+
+    font-size: 14px;
+
+    margin-bottom: 15px;
+}
+
+.story-section h2,
+.episode h2 {
+    font-size: clamp(40px, 6vw, 75px);
+
+    margin-bottom: 30px;
+}
+
+.story-section p,
+.episode p {
+
+    max-width: 650px;
+
+    font-size: 20px;
+
+    line-height: 1.8;
+
+    color: #ccc;
+
+    margin-bottom: 15px;
+}
+
+.story-section h3,
+.episode h3 {
+
+    font-size: 30px;
+
+    margin-top: 20px;
+
+}
+
+
+/* MISSION */
+
+.mission-box {
+
+    border-left: 3px solid #e50914;
+
+    padding: 25px;
+
+    background: #111;
+
+    margin: 25px 0;
+
+    width: min(600px, 100%);
+}
+
+
+/* EMOTIONAL */
+
+.emotional {
+
+    background:
+        radial-gradient(
+            circle at 80% 50%,
+            #160d0d,
+            #050505 65%
+        );
+}
+
+
+/* NICKNAMES */
+
+.nickname-container {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 15px;
+
+    margin: 30px 0;
+}
+
+.nickname-container span {
+
+    padding: 15px 22px;
+
+    background: #151515;
+
+    border-radius: 30px;
+
+    border: 1px solid #333;
+
+    transition: 0.3s;
+}
+
+.nickname-container span:hover {
+
+    background: #e50914;
+
+    transform: translateY(-5px);
+}
+
+
+/* WARNING */
+
+.warning {
+
+    padding: 20px 30px;
+
+    border: 1px solid #e50914;
+
+    background: #180606;
+
+    margin: 25px 0;
+
+    font-weight: bold;
+
+    letter-spacing: 2px;
+}
+
+
+/* QUALITIES */
+
+.qualities {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 15px;
+
+    margin: 30px 0;
+}
+
+.qualities span {
+
+    padding: 15px 20px;
+
+    background: #111;
+
+    border-radius: 5px;
+
+}
+
+
+/* FINALE */
+
+.finale {
+
+    text-align: center;
+
+    align-items: center;
+
+    background:
+        radial-gradient(
+            circle,
+            #280707,
+            #000 65%
+        );
+}
+
+.date {
+
+    color: #aaa;
+
+    letter-spacing: 4px;
+
+    margin-bottom: 30px;
+}
+
+.finale h1 {
+
+    font-size: clamp(45px, 8vw, 100px);
+
+    line-height: 1.05;
+
+    margin-bottom: 40px;
+}
+
+.birthday-message {
+
+    max-width: 700px;
+
+    font-size: 20px;
+
+    line-height: 1.8;
+
+    color: #ddd;
+
+}
+
+.reveal {
+
+    margin-top: 100px;
+
+    opacity: 0;
+
+    animation: revealName 2s ease forwards;
+
+    animation-delay: 3s;
+}
+
+.reveal h2 {
+
+    font-size: 55px;
+
+    margin: 20px 0;
+}
+
+
+/* POST CREDIT */
+
+.post-credit {
+
+    align-items: center;
+
+    text-align: center;
+
+    background: #000;
+}
+
+.post-credit h2 {
+
+    font-size: 70px;
+
+    margin: 30px 0;
+}
+
+.post-credit h3 {
+
+    font-size: 30px;
+
+    margin: 15px;
+}
+
+.post-credit p {
+
+    font-size: 18px;
+
+    color: #aaa;
+
+    line-height: 2;
+
+}
+
+
+/* POPUP */
+
+#info-popup {
+
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(0,0,0,0.9);
+
+    display: none;
+
+    justify-content: center;
+
+    align-items: center;
+
+    z-index: 5000;
+}
+
+.popup-content {
+
+    background: #151515;
+
+    padding: 50px;
+
+    max-width: 500px;
+
+    width: 90%;
+
+    border-radius: 8px;
+
+    position: relative;
+}
+
+.popup-content h2 {
+
+    margin-bottom: 25px;
+
+    font-size: 35px;
+}
+
+.popup-content p {
+
+    color: #bbb;
+
+    margin: 12px 0;
+}
+
+.popup-content button {
+
+    position: absolute;
+
+    top: 15px;
+
+    right: 15px;
+
+    background: none;
+
+    color: white;
+
+    font-size: 25px;
+}
+
+
+/* ANIMATIONS */
+
+@keyframes titleAppear {
+
+    from {
+        opacity: 0;
+        transform: scale(1.3);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes fadeOut {
+
+    to {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+@keyframes revealName {
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+/* MOBILE */
+
+@media (max-width: 700px) {
+
+    .hero-content {
+        padding: 30px;
+    }
+
+    .hero h1 {
+        font-size: 55px;
+        letter-spacing: 4px;
+    }
+
+    .details {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .story-section,
+    .episode,
+    .finale,
+    .post-credit {
+
+        padding: 80px 30px;
+    }
+
+    .story-section p,
+    .episode p {
+
+        font-size: 17px;
+    }
+
+    .post-credit h2 {
+
+        font-size: 50px;
+    }
+
+}
