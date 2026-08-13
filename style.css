@@ -2346,3 +2346,220 @@ button {
     }
 
 }
+/* =====================================================
+   UPGRADE 9 — SECRET SUNSHINE EASTER EGG
+===================================================== */
+
+.secret-sunshine {
+
+    position: fixed;
+
+    bottom: 25px;
+
+    right: 25px;
+
+    width: 45px;
+
+    height: 45px;
+
+    border-radius: 50%;
+
+    border: 1px solid #333;
+
+    background:
+        rgba(20,20,20,0.8);
+
+    color: white;
+
+    font-size: 18px;
+
+    cursor: pointer;
+
+    z-index: 3000;
+
+    opacity: 0.45;
+
+    transition:
+        all 0.3s ease;
+
+}
+
+
+.secret-sunshine:hover {
+
+    opacity: 1;
+
+    transform:
+        scale(1.15)
+        rotate(15deg);
+
+    border-color:
+        #c9a86a;
+
+    box-shadow:
+        0 0 25px
+        rgba(255,200,100,0.2);
+
+}
+
+
+/* Secret popup */
+
+.sunshine-secret {
+
+    position: fixed;
+
+    inset: 0;
+
+    background:
+        rgba(0,0,0,0.92);
+
+    backdrop-filter:
+        blur(10px);
+
+    z-index: 9000;
+
+    display: none;
+
+    justify-content: center;
+
+    align-items: center;
+
+}
+
+
+.sunshine-secret.active {
+
+    display: flex;
+
+}
+
+
+.secret-content {
+
+    width:
+        min(520px, 90%);
+
+    padding: 50px 40px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #191919,
+            #090909
+        );
+
+    border:
+        1px solid #333;
+
+    border-radius: 8px;
+
+    text-align: center;
+
+    position: relative;
+
+    animation:
+        secretAppear
+        0.5s ease forwards;
+
+}
+
+
+.secret-close {
+
+    position: absolute;
+
+    right: 20px;
+
+    top: 15px;
+
+    font-size: 28px;
+
+    color: #777;
+
+    cursor: pointer;
+
+}
+
+
+.secret-close:hover {
+
+    color: white;
+
+}
+
+
+.secret-icon {
+
+    font-size: 55px;
+
+    margin-bottom: 20px;
+
+}
+
+
+.secret-label {
+
+    color: #e50914 !important;
+
+    font-size: 11px !important;
+
+    letter-spacing: 4px;
+
+    margin-bottom: 20px !important;
+
+}
+
+
+.secret-content h2 {
+
+    font-size: 35px;
+
+    margin-bottom: 25px;
+
+}
+
+
+.secret-content > p {
+
+    color: #aaa;
+
+    line-height: 1.8;
+
+}
+
+
+.secret-signature {
+
+    margin-top: 30px;
+
+    color: #ddd !important;
+
+}
+
+
+/* Animation */
+
+@keyframes secretAppear {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            scale(0.9)
+            translateY(20px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            scale(1)
+            translateY(0);
+
+    }
+
+}
