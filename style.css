@@ -2204,3 +2204,145 @@ button {
     }
 
 }
+/* =====================================================
+   UPGRADE 8 — POST CREDIT SCENE
+===================================================== */
+
+.post-credit {
+
+    min-height: 100vh;
+
+    background: #000;
+
+    position: relative;
+
+    overflow: hidden;
+
+    opacity: 0;
+
+    animation:
+        postCreditFade
+        2s ease
+        forwards;
+
+}
+
+
+/* Tiny cinematic glow */
+
+.post-credit::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 400px;
+
+    height: 400px;
+
+    left: 50%;
+
+    top: 50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255, 255, 255, 0.04),
+            transparent 70%
+        );
+
+    pointer-events: none;
+
+}
+
+
+/* Content */
+
+.post-credit > * {
+
+    position: relative;
+
+    z-index: 2;
+
+}
+
+
+.post-credit h2 {
+
+    font-size:
+        clamp(35px, 6vw, 65px);
+
+    letter-spacing:
+        8px;
+
+    color: #777;
+
+    margin-bottom: 35px;
+
+}
+
+
+.post-credit h3 {
+
+    font-size:
+        clamp(25px, 4vw, 42px);
+
+    font-weight: 400;
+
+    line-height: 1.4;
+
+    max-width: 700px;
+
+}
+
+
+.post-credit p {
+
+    max-width: 600px;
+
+    color: #666;
+
+    line-height: 2;
+
+    margin-top: 30px;
+
+}
+
+
+/* Signature */
+
+.post-credit .signature {
+
+    margin-top: 60px;
+
+    color: #aaa;
+
+    letter-spacing: 4px;
+
+    font-size: 14px;
+
+}
+
+
+/* =====================================================
+   ANIMATION
+===================================================== */
+
+@keyframes postCreditFade {
+
+    from {
+
+        opacity: 0;
+
+    }
+
+    to {
+
+        opacity: 1;
+
+    }
+
+}
