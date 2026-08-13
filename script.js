@@ -147,7 +147,65 @@ revealSections.forEach(function(section) {
     revealObserver.observe(section);
 
 });
+/* =====================================================
+   UPGRADE 9 — SECRET SUNSHINE
+===================================================== */
 
+function openSunshineSecret() {
+
+    const secret =
+        document.getElementById(
+            "sunshine-secret"
+        );
+
+    if (secret) {
+
+        secret.classList.add("active");
+
+    }
+
+}
+
+
+function closeSunshineSecret() {
+
+    const secret =
+        document.getElementById(
+            "sunshine-secret"
+        );
+
+    if (secret) {
+
+        secret.classList.remove("active");
+
+    }
+
+}
+
+
+/* Close secret by clicking outside */
+
+window.addEventListener(
+    "click",
+    function(event) {
+
+        const secret =
+            document.getElementById(
+                "sunshine-secret"
+            );
+
+        if (
+            event.target === secret
+        ) {
+
+            secret.classList.remove(
+                "active"
+            );
+
+        }
+
+    }
+);
 
 
 
