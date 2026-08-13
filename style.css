@@ -2114,3 +2114,93 @@ button {
     }
 
 }
+/* =====================================================
+   UPGRADE 7 — SUNSHINE FINAL REVEAL
+===================================================== */
+
+.reveal-label {
+
+    font-size: 12px !important;
+
+    letter-spacing: 5px;
+
+    color: #777 !important;
+
+    margin-bottom: 20px !important;
+
+    opacity: 0;
+
+    animation:
+        revealLabel
+        1.2s ease
+        2.3s
+        forwards;
+
+}
+
+
+.reveal-subtitle {
+
+    font-size: 20px !important;
+
+    color: #ccc !important;
+
+    margin-top: 20px !important;
+
+    opacity: 0;
+
+    animation:
+        revealSubtitle
+        1.2s ease
+        3.8s
+        forwards;
+
+}
+
+
+/* =====================================================
+   FINAL REVEAL ANIMATIONS
+===================================================== */
+
+@keyframes revealLabel {
+
+    from {
+
+        opacity: 0;
+
+        letter-spacing: 15px;
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        letter-spacing: 5px;
+
+    }
+
+}
+
+
+@keyframes revealSubtitle {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(15px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+
+    }
+
+}
