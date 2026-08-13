@@ -307,58 +307,6 @@ window.addEventListener(
     }
 );
 /* =====================================================
-   UPGRADE 11 — BACKGROUND MUSIC
-===================================================== */
-
-const backgroundMusic = new Audio(
-    "music.mp3"
-);
-
-backgroundMusic.loop = true;
-backgroundMusic.volume = 0.35;
-
-
-/* =====================================================
-   MUSIC CONTROL
-===================================================== */
-
-function toggleMusic() {
-
-    const button =
-        document.getElementById("music-toggle");
-
-    if (backgroundMusic.paused) {
-
-        backgroundMusic.play()
-            .then(function() {
-
-                if (button) {
-                    button.textContent = "🔊";
-                }
-
-            })
-            .catch(function(error) {
-
-                console.log(
-                    "Music could not start:",
-                    error
-                );
-
-            });
-
-    } else {
-
-        backgroundMusic.pause();
-
-        if (button) {
-            button.textContent = "🔇";
-        }
-
-    }
-
-}
-
-/* =====================================================
    FINAL CINEMATIC TOUCH
 ===================================================== */
 
@@ -372,3 +320,8 @@ window.addEventListener(
 
     }
 );
+
+
+/* =====================================================
+   END OF SCRIPT
+===================================================== */
