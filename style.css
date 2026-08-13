@@ -1299,7 +1299,175 @@ button {
     box-shadow:
         0 20px 50px rgba(229, 9, 20, 0.16);
 }
+/* =====================================================
+   UPGRADE 5 — CINEMATIC EPISODE TRANSITION
+===================================================== */
 
+#episode-transition {
+
+    position: fixed;
+
+    inset: 0;
+
+    background: #000;
+
+    z-index: 10000;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+
+    transition:
+        opacity 0.5s ease,
+        visibility 0.5s ease;
+
+}
+
+
+#episode-transition.active {
+
+    opacity: 1;
+
+    visibility: visible;
+
+    pointer-events: all;
+
+}
+
+
+.transition-content {
+
+    text-align: center;
+
+    transform:
+        translateY(20px);
+
+    opacity: 0;
+
+}
+
+
+#episode-transition.active
+.transition-content {
+
+    animation:
+        transitionAppear
+        0.8s ease forwards;
+
+}
+
+
+.transition-content p {
+
+    color: #e50914;
+
+    font-size: 13px;
+
+    letter-spacing: 5px;
+
+    margin-bottom: 20px;
+
+}
+
+
+.transition-content h2 {
+
+    font-size:
+        clamp(45px, 8vw, 90px);
+
+    letter-spacing: 4px;
+
+    margin-bottom: 25px;
+
+}
+
+
+.transition-line {
+
+    width: 0;
+
+    height: 2px;
+
+    background: #e50914;
+
+    margin:
+        0 auto 20px;
+
+}
+
+
+#episode-transition.active
+.transition-line {
+
+    animation:
+        transitionLine
+        1.2s ease
+        forwards;
+
+}
+
+
+.transition-content span {
+
+    font-size: 12px;
+
+    letter-spacing: 4px;
+
+    color: #777;
+
+}
+
+
+/* =====================================================
+   TRANSITION ANIMATION
+===================================================== */
+
+@keyframes transitionAppear {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(25px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+
+@keyframes transitionLine {
+
+    from {
+
+        width: 0;
+
+    }
+
+    to {
+
+        width: 180px;
+
+    }
+
+}
 .episode-card:nth-child(8):hover {
     box-shadow:
         0 20px 50px rgba(255, 210, 80, 0.14);
