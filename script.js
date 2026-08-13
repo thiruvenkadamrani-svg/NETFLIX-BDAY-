@@ -322,3 +322,49 @@ window.addEventListener(
 
     }
 );
+/* =====================================================
+   UPGRADE 11 — MUSIC CONTROL
+===================================================== */
+
+function toggleMusic() {
+
+    const music =
+        document.getElementById(
+            "background-music"
+        );
+
+    const button =
+        document.getElementById(
+            "music-toggle"
+        );
+
+    if (!music || !button) {
+        return;
+    }
+
+    if (music.paused) {
+
+        music.play()
+            .then(function() {
+
+                button.textContent = "🔊";
+
+            })
+            .catch(function(error) {
+
+                console.log(
+                    "Music could not start:",
+                    error
+                );
+
+            });
+
+    } else {
+
+        music.pause();
+
+        button.textContent = "🔇";
+
+    }
+
+}
