@@ -15,19 +15,19 @@ body {
 }
 
 
-/* LOADING */
+/* =====================================================
+   LOADING SCREEN
+===================================================== */
 
 #loading-screen {
     position: fixed;
     inset: 0;
     background: #000;
     z-index: 9999;
-
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
     animation: fadeOut 2s ease forwards;
     animation-delay: 3s;
 }
@@ -44,21 +44,20 @@ body {
     font-weight: bold;
     letter-spacing: 8px;
     opacity: 0;
-
     animation: titleAppear 2s ease forwards;
     animation-delay: 1s;
 }
 
 
+/* =====================================================
+   HERO
+===================================================== */
+
 .hero {
     min-height: 100vh;
-
     position: relative;
-
     display: flex;
-
     align-items: center;
-
     overflow: hidden;
 
     background:
@@ -80,113 +79,286 @@ body {
         );
 }
 
-.hero-overlay {     position: absolute;      inset: 0;      background:         linear-gradient(             90deg,             rgba(0,0,0,0.96) 0%,             rgba(0,0,0,0.75) 45%,             rgba(0,0,0,0.35) 100%         );      z-index: 1; }
+.hero::after {
+    content: "";
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    right: -150px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255, 190, 80, 0.12),
+            transparent 65%
+        );
+
+    filter: blur(30px);
+
+    animation:
+        sunshineGlow
+        5s ease-in-out
+        infinite alternate;
+
+    pointer-events: none;
+}
+
+.hero-overlay {
     position: absolute;
     inset: 0;
 
     background:
         linear-gradient(
             90deg,
-            rgba(0,0,0,0.95),
-            rgba(0,0,0,0.55),
-            rgba(0,0,0,0.9)
+            rgba(0, 0, 0, 0.96) 0%,
+            rgba(0, 0, 0, 0.75) 45%,
+            rgba(0, 0, 0, 0.35) 100%
         );
+
+    z-index: 1;
 }
 
 .hero-content {
     position: relative;
-
-    max-width: 700px;
+    z-index: 2;
+    max-width: 750px;
     padding: 60px;
+
+    animation:
+        heroAppear
+        1.5s ease forwards;
 }
 
 .original {
     color: #e50914;
-
     font-size: 14px;
-
     letter-spacing: 4px;
-
     margin-bottom: 15px;
 }
 
-.hero h1 {      font-size: clamp(55px, 9vw, 110px);      letter-spacing: 10px;      margin-bottom: 10px;      background: linear-gradient(         90deg,         #ffffff,         #ffe5a3,         #ffffff     );      -webkit-background-clip: text;      -webkit-text-fill-color: transparent;      text-shadow:         0 0 30px rgba(255, 200, 100, 0.15);  }
+.hero h1 {
     font-size: clamp(55px, 9vw, 110px);
-
-    letter-spacing: 8px;
-
+    letter-spacing: 10px;
     margin-bottom: 10px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ffffff,
+            #ffe5a3,
+            #ffffff
+        );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    text-shadow:
+        0 0 30px
+        rgba(255, 200, 100, 0.15);
 }
 
 .subtitle {
     font-size: 22px;
     color: #ccc;
-
     margin-bottom: 25px;
 }
 
 .details {
     display: flex;
     gap: 20px;
-
     font-size: 14px;
-
     color: #aaa;
-
     margin-bottom: 25px;
 }
 
 .description {
     line-height: 1.8;
-
     max-width: 520px;
-
     color: #ddd;
-
     margin-bottom: 30px;
 }
 
 
-/* BUTTONS */
+/* =====================================================
+   BUTTONS
+===================================================== */
 
 button {
     border: none;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+}
 
-    padding: 13px 25px;
-
+.play-button {
+    background: #ffffff;
+    color: #000000;
+    padding: 14px 32px;
+    border-radius: 4px;
     margin-right: 10px;
+
+    transition: all 0.3s ease;
+
+    box-shadow:
+        0 8px 30px
+        rgba(255, 255, 255, 0.12);
+}
+
+.play-button:hover {
+    transform: scale(1.07);
+
+    box-shadow:
+        0 10px 40px
+        rgba(255, 255, 255, 0.25);
+}
+
+.info-button {
+    background:
+        rgba(80, 80, 80, 0.55);
+
+    color: white;
+
+    padding: 14px 28px;
 
     border-radius: 4px;
 
-    font-size: 15px;
+    backdrop-filter: blur(10px);
 
-    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.info-button:hover {
+    background:
+        rgba(120, 120, 120, 0.7);
+
+    transform: scale(1.05);
+}
+
+
+/* =====================================================
+   EPISODE SELECTOR
+===================================================== */
+
+.episodes-section {
+    min-height: 100vh;
+    padding: 100px 8%;
+
+    background:
+        linear-gradient(
+            180deg,
+            #050505,
+            #0b0b0b
+        );
+}
+
+.episodes-header {
+    margin-bottom: 50px;
+}
+
+.episodes-header h2 {
+    font-size:
+        clamp(40px, 6vw, 70px);
+
+    margin-bottom: 15px;
+}
+
+.episodes-header p {
+    color: #aaa;
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+.episode-grid {
+    display: grid;
+    grid-template-columns:
+        repeat(4, 1fr);
+    gap: 20px;
+}
+
+.episode-card {
+    min-height: 210px;
+    padding: 25px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #181818,
+            #0d0d0d
+        );
+
+    border: 1px solid #222;
+
+    border-radius: 6px;
 
     cursor: pointer;
+
+    position: relative;
+
+    overflow: hidden;
+
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        background 0.3s ease;
 }
 
-.play-button {      background: #ffffff;      color: #000000;      padding: 14px 32px;      border-radius: 4px;      transition: all 0.3s ease;      box-shadow:         0 8px 30px rgba(255,255,255,0.12);  }  .play-button:hover {      transform: scale(1.07);      box-shadow:         0 10px 40px rgba(255,255,255,0.25);  }
-    background: white;
-    color: black;
+.episode-card::after {
+    content: "";
+
+    position: absolute;
+
+    width: 100px;
+    height: 100px;
+
+    right: -50px;
+    bottom: -50px;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255, 190, 80, 0.15),
+            transparent 70%
+        );
 }
 
-.info-button {      background: rgba(80,80,80,0.55);      color: white;      padding: 14px 28px;      border-radius: 4px;      backdrop-filter: blur(10px);      transition: all 0.3s ease;  }  .info-button:hover {      background: rgba(120,120,120,0.7);      transform: scale(1.05);  }
-    background: rgba(100,100,100,0.7);
-    color: white;
+.episode-card:hover {
+    transform:
+        translateY(-8px)
+        scale(1.02);
+
+    border-color: #e50914;
+
+    background: #1c1c1c;
 }
 
-button:hover {
-    transform: scale(1.04);
+.episode-card-number {
+    font-size: 45px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.episode-card h3 {
+    font-size: 22px;
+    margin-bottom: 12px;
+}
+
+.episode-card p {
+    color: #888;
+    line-height: 1.5;
 }
 
 
-/* STORY */
+/* =====================================================
+   EPISODE SECTIONS
+===================================================== */
 
 .story-section,
 .episode,
 .finale,
 .post-credit {
-
     min-height: 100vh;
 
     padding: 100px 12%;
@@ -199,29 +371,27 @@ button:hover {
 
     align-items: flex-start;
 
-    border-top: 1px solid #151515;
+    border-top:
+        1px solid #151515;
 }
 
 .episode-number {
     color: #e50914;
-
     letter-spacing: 4px;
-
     font-size: 14px;
-
     margin-bottom: 15px;
 }
 
 .story-section h2,
 .episode h2 {
-    font-size: clamp(40px, 6vw, 75px);
+    font-size:
+        clamp(40px, 6vw, 75px);
 
     margin-bottom: 30px;
 }
 
 .story-section p,
 .episode p {
-
     max-width: 650px;
 
     font-size: 20px;
@@ -235,19 +405,23 @@ button:hover {
 
 .story-section h3,
 .episode h3 {
-
     font-size: 30px;
-
     margin-top: 20px;
+}
 
+.small-note {
+    font-size: 14px !important;
+    color: #666 !important;
 }
 
 
-/* MISSION */
+/* =====================================================
+   PONGAL MISSION
+===================================================== */
 
 .mission-box {
-
-    border-left: 3px solid #e50914;
+    border-left:
+        3px solid #e50914;
 
     padding: 25px;
 
@@ -255,14 +429,16 @@ button:hover {
 
     margin: 25px 0;
 
-    width: min(600px, 100%);
+    width:
+        min(600px, 100%);
 }
 
 
-/* EMOTIONAL */
+/* =====================================================
+   EMOTIONAL EPISODES
+===================================================== */
 
 .emotional {
-
     background:
         radial-gradient(
             circle at 80% 50%,
@@ -272,10 +448,11 @@ button:hover {
 }
 
 
-/* NICKNAMES */
+/* =====================================================
+   NICKNAMES
+===================================================== */
 
 .nickname-container {
-
     display: flex;
 
     flex-wrap: wrap;
@@ -286,8 +463,8 @@ button:hover {
 }
 
 .nickname-container span {
-
-    padding: 15px 22px;
+    padding:
+        15px 22px;
 
     background: #151515;
 
@@ -299,20 +476,23 @@ button:hover {
 }
 
 .nickname-container span:hover {
-
     background: #e50914;
 
-    transform: translateY(-5px);
+    transform:
+        translateY(-5px);
 }
 
 
-/* WARNING */
+/* =====================================================
+   CHANDRAMUKHI MODE
+===================================================== */
 
 .warning {
+    padding:
+        20px 30px;
 
-    padding: 20px 30px;
-
-    border: 1px solid #e50914;
+    border:
+        1px solid #e50914;
 
     background: #180606;
 
@@ -324,10 +504,11 @@ button:hover {
 }
 
 
-/* QUALITIES */
+/* =====================================================
+   QUALITIES
+===================================================== */
 
 .qualities {
-
     display: flex;
 
     flex-wrap: wrap;
@@ -338,20 +519,20 @@ button:hover {
 }
 
 .qualities span {
-
-    padding: 15px 20px;
+    padding:
+        15px 20px;
 
     background: #111;
 
     border-radius: 5px;
-
 }
 
 
-/* FINALE */
+/* =====================================================
+   FINALE
+===================================================== */
 
 .finale {
-
     text-align: center;
 
     align-items: center;
@@ -365,7 +546,6 @@ button:hover {
 }
 
 .date {
-
     color: #aaa;
 
     letter-spacing: 4px;
@@ -374,8 +554,8 @@ button:hover {
 }
 
 .finale h1 {
-
-    font-size: clamp(45px, 8vw, 100px);
+    font-size:
+        clamp(45px, 8vw, 100px);
 
     line-height: 1.05;
 
@@ -383,7 +563,6 @@ button:hover {
 }
 
 .birthday-message {
-
     max-width: 700px;
 
     font-size: 20px;
@@ -391,32 +570,32 @@ button:hover {
     line-height: 1.8;
 
     color: #ddd;
-
 }
 
 .reveal {
-
     margin-top: 100px;
 
     opacity: 0;
 
-    animation: revealName 2s ease forwards;
+    animation:
+        revealName
+        2s ease forwards;
 
     animation-delay: 3s;
 }
 
 .reveal h2 {
-
     font-size: 55px;
 
     margin: 20px 0;
 }
 
 
-/* POST CREDIT */
+/* =====================================================
+   POST CREDIT
+===================================================== */
 
 .post-credit {
-
     align-items: center;
 
     text-align: center;
@@ -425,39 +604,37 @@ button:hover {
 }
 
 .post-credit h2 {
-
     font-size: 70px;
 
     margin: 30px 0;
 }
 
 .post-credit h3 {
-
     font-size: 30px;
 
     margin: 15px;
 }
 
 .post-credit p {
-
     font-size: 18px;
 
     color: #aaa;
 
     line-height: 2;
-
 }
 
 
-/* POPUP */
+/* =====================================================
+   INFO POPUP
+===================================================== */
 
 #info-popup {
-
     position: fixed;
 
     inset: 0;
 
-    background: rgba(0,0,0,0.9);
+    background:
+        rgba(0, 0, 0, 0.9);
 
     display: none;
 
@@ -469,7 +646,6 @@ button:hover {
 }
 
 .popup-content {
-
     background: #151515;
 
     padding: 50px;
@@ -484,21 +660,18 @@ button:hover {
 }
 
 .popup-content h2 {
-
     margin-bottom: 25px;
 
     font-size: 35px;
 }
 
 .popup-content p {
-
     color: #bbb;
 
     margin: 12px 0;
 }
 
-.popup-content button {
-
+.close-button {
     position: absolute;
 
     top: 15px;
@@ -513,18 +686,24 @@ button:hover {
 }
 
 
-/* ANIMATIONS */
+/* =====================================================
+   ANIMATIONS
+===================================================== */
 
 @keyframes titleAppear {
 
     from {
         opacity: 0;
-        transform: scale(1.3);
+
+        transform:
+            scale(1.3);
     }
 
     to {
         opacity: 1;
-        transform: scale(1);
+
+        transform:
+            scale(1);
     }
 }
 
@@ -532,6 +711,7 @@ button:hover {
 
     to {
         opacity: 0;
+
         visibility: hidden;
     }
 }
@@ -542,77 +722,76 @@ button:hover {
         opacity: 1;
     }
 }
-.hero::after {
-    content: "";
-
-    position: absolute;
-
-    width: 500px;
-    height: 500px;
-
-    right: -150px;
-    top: 50%;
-
-    transform: translateY(-50%);
-
-    background: radial-gradient(
-        circle,
-        rgba(255, 190, 80, 0.12),
-        transparent 65%
-    );
-
-    filter: blur(30px);
-
-    animation: sunshineGlow 5s ease-in-out infinite alternate;
-
-    pointer-events: none;
-}
-
 
 @keyframes sunshineGlow {
 
     from {
-        transform: translateY(-50%) scale(0.9);
+        transform:
+            translateY(-50%)
+            scale(0.9);
+
         opacity: 0.5;
     }
 
     to {
-        transform: translateY(-50%) scale(1.15);
+        transform:
+            translateY(-50%)
+            scale(1.15);
+
         opacity: 1;
     }
-
 }
-
 
 @keyframes heroAppear {
 
     from {
         opacity: 0;
-        transform: translateY(30px);
+
+        transform:
+            translateY(30px);
     }
 
     to {
         opacity: 1;
-        transform: translateY(0);
-    }
 
+        transform:
+            translateY(0);
+    }
 }
 
-/* MOBILE */
 
-/* ☀️ SUNSHINE GLOW */  .hero::after {      content: "";      position: absolute;      width: 500px;     height: 500px;      right: -150px;     top: 50%;      transform: translateY(-50%);      background: radial-gradient(         circle,         rgba(255, 190, 80, 0.12),         transparent 65%     );      filter: blur(30px);      animation: sunshineGlow 5s ease-in-out infinite alternate;      pointer-events: none; }   @keyframes sunshineGlow {      from {          transform: translateY(-50%) scale(0.9);          opacity: 0.5;      }      to {          transform: translateY(-50%) scale(1.15);          opacity: 1;      }  }
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 900px) {
+
+    .episode-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 700px) {
 
     .hero-content {
         padding: 30px;
     }
 
-    .hero h1 {      font-size: clamp(55px, 9vw, 110px);      letter-spacing: 10px;      margin-bottom: 10px;      background: linear-gradient(         90deg,         #ffffff,         #ffe5a3,         #ffffff     );      -webkit-background-clip: text;      -webkit-text-fill-color: transparent;      text-shadow:         0 0 30px rgba(255, 200, 100, 0.15);  }
+    .hero h1 {
         font-size: 55px;
+
         letter-spacing: 4px;
     }
 
     .details {
         flex-wrap: wrap;
+
         gap: 10px;
     }
 
@@ -620,19 +799,63 @@ button:hover {
     .episode,
     .finale,
     .post-credit {
-
-        padding: 80px 30px;
+        padding:
+            80px 30px;
     }
 
     .story-section p,
     .episode p {
-
         font-size: 17px;
     }
 
     .post-credit h2 {
-
         font-size: 50px;
     }
 
+    .episodes-section {
+        padding:
+            80px 25px;
+    }
+
+    .episode-grid {
+        grid-template-columns:
+            1fr;
+    }
+
+    .episode-card {
+        min-height: 180px;
+    }
+
+    .hero::after {
+        width: 300px;
+
+        height: 300px;
+
+        right: -100px;
+    }
+}
+
+
+/* =====================================================
+   SMALL PHONES
+===================================================== */
+
+@media (max-width: 450px) {
+
+    .hero h1 {
+        font-size: 45px;
+    }
+
+    .play-button,
+    .info-button {
+        margin-bottom: 10px;
+    }
+
+    .finale h1 {
+        font-size: 42px;
+    }
+
+    .reveal h2 {
+        font-size: 45px;
+    }
 }
