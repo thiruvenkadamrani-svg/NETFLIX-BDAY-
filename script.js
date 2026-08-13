@@ -306,7 +306,57 @@ window.addEventListener(
 
     }
 );
+/* =====================================================
+   UPGRADE 11 — BACKGROUND MUSIC
+===================================================== */
 
+const backgroundMusic = new Audio(
+    "music.mp3"
+);
+
+backgroundMusic.loop = true;
+backgroundMusic.volume = 0.35;
+
+
+/* =====================================================
+   MUSIC CONTROL
+===================================================== */
+
+function toggleMusic() {
+
+    const button =
+        document.getElementById("music-toggle");
+
+    if (backgroundMusic.paused) {
+
+        backgroundMusic.play()
+            .then(function() {
+
+                if (button) {
+                    button.textContent = "🔊";
+                }
+
+            })
+            .catch(function(error) {
+
+                console.log(
+                    "Music could not start:",
+                    error
+                );
+
+            });
+
+    } else {
+
+        backgroundMusic.pause();
+
+        if (button) {
+            button.textContent = "🔇";
+        }
+
+    }
+
+}
 
 /* =====================================================
    FINAL CINEMATIC TOUCH
@@ -322,49 +372,3 @@ window.addEventListener(
 
     }
 );
-/* =====================================================
-   UPGRADE 11 — MUSIC CONTROL
-===================================================== */
-
-function toggleMusic() {
-
-    const music =
-        document.getElementById(
-            "background-music"
-        );
-
-    const button =
-        document.getElementById(
-            "music-toggle"
-        );
-
-    if (!music || !button) {
-        return;
-    }
-
-    if (music.paused) {
-
-        music.play()
-            .then(function() {
-
-                button.textContent = "🔊";
-
-            })
-            .catch(function(error) {
-
-                console.log(
-                    "Music could not start:",
-                    error
-                );
-
-            });
-
-    } else {
-
-        music.pause();
-
-        button.textContent = "🔇";
-
-    }
-
-}
