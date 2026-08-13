@@ -1,82 +1,133 @@
+/* =====================================================
+   MY SUNSHINE — FINAL SCRIPT
+===================================================== */
+
+
+/* =====================================================
+   HERO — PLAY
+===================================================== */
+
 function startMovie() {
 
-    const story = document.getElementById("story");
+    const story =
+        document.getElementById("story");
 
-    story.scrollIntoView({
-        behavior: "smooth"
-    });
+    if (story) {
+
+        story.scrollIntoView({
+            behavior: "smooth"
+        });
+
+    }
 
 }
 
 
+/* =====================================================
+   INFO POPUP
+===================================================== */
+
 function showInfo() {
 
-    document.getElementById("info-popup").style.display = "flex";
+    const popup =
+        document.getElementById("info-popup");
+
+    if (popup) {
+
+        popup.style.display = "flex";
+
+    }
 
 }
 
 
 function closeInfo() {
 
-    document.getElementById("info-popup").style.display = "none";
+    const popup =
+        document.getElementById("info-popup");
 
-}
-
-
-function nextEpisode() {
-
-    const next = document.querySelector(".episode");
-
-    next.scrollIntoView({
-        behavior: "smooth"
-    });
-
-}
-
-
-/* Close popup when clicking outside */
-
-window.addEventListener("click", function(event) {
-
-    const popup = document.getElementById("info-popup");
-
-    if (event.target === popup) {
+    if (popup) {
 
         popup.style.display = "none";
 
-
-        
-
     }
 
-});
+}
+
+
+/* Close info popup when clicking outside */
+
+window.addEventListener(
+    "click",
+    function(event) {
+
+        const popup =
+            document.getElementById(
+                "info-popup"
+            );
+
+        if (
+            popup &&
+            event.target === popup
+        ) {
+
+            popup.style.display = "none";
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   EPISODE 01 → CONTINUE
+===================================================== */
+
+function nextEpisode() {
+
+    goToEpisode("episode2");
+
+}
+
+
 /* =====================================================
    CINEMATIC EPISODE TRANSITION
 ===================================================== */
 
 function goToEpisode(id) {
 
-    const episode = document.getElementById(id);
+    const episode =
+        document.getElementById(id);
 
     const transition =
-        document.getElementById("episode-transition");
+        document.getElementById(
+            "episode-transition"
+        );
 
     const transitionTitle =
-        document.getElementById("transition-episode");
+        document.getElementById(
+            "transition-episode"
+        );
 
 
-    if (!episode || !transition) {
+    if (!episode) {
+
         return;
+
     }
 
 
-    /* Get episode number */
+    /* ---------------------------------------------
+       Find episode number
+    --------------------------------------------- */
 
     const number =
-        episode.querySelector(".episode-number");
+        episode.querySelector(
+            ".episode-number"
+        );
 
 
-    if (number) {
+    if (number && transitionTitle) {
 
         transitionTitle.textContent =
             number.textContent;
@@ -84,33 +135,60 @@ function goToEpisode(id) {
     }
 
 
-    /* Show cinematic transition */
+    /* ---------------------------------------------
+       Show cinematic transition
+    --------------------------------------------- */
 
-    transition.classList.add("active");
+    if (transition) {
 
+        transition.classList.add(
+            "active"
+        );
 
-    /* Open episode */
-
-    setTimeout(function() {
-
-        episode.scrollIntoView({
-            behavior: "smooth"
-        });
-
-    }, 1200);
+    }
 
 
-    /* Remove transition */
+    /* ---------------------------------------------
+       Scroll after cinematic delay
+    --------------------------------------------- */
 
-    setTimeout(function() {
+    setTimeout(
+        function() {
 
-        transition.classList.remove("active");
+            episode.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
 
-    }, 1900);
+        },
+        1200
+    );
+
+
+    /* ---------------------------------------------
+       Remove transition
+    --------------------------------------------- */
+
+    setTimeout(
+        function() {
+
+            if (transition) {
+
+                transition.classList.remove(
+                    "active"
+                );
+
+            }
+
+        },
+        1900
+    );
 
 }
+
+
 /* =====================================================
-   UPGRADE 6 — SCROLL REVEAL
+   SCROLL REVEAL
 ===================================================== */
 
 const revealSections =
@@ -119,36 +197,53 @@ const revealSections =
     );
 
 
-const revealObserver =
-    new IntersectionObserver(
-        function(entries) {
+if (
+    "IntersectionObserver"
+    in window
+) {
 
-            entries.forEach(function(entry) {
+    const revealObserver =
+        new IntersectionObserver(
+            function(entries) {
 
-                if (entry.isIntersecting) {
+                entries.forEach(
+                    function(entry) {
 
-                    entry.target.classList.add(
-                        "visible"
-                    );
+                        if (
+                            entry.isIntersecting
+                        ) {
 
-                }
+                            entry.target.classList.add(
+                                "visible"
+                            );
 
-            });
+                        }
 
-        },
-        {
-            threshold: 0.2
+                    }
+                );
+
+            },
+            {
+                threshold: 0.2
+            }
+        );
+
+
+    revealSections.forEach(
+        function(section) {
+
+            revealObserver.observe(
+                section
+            );
+
         }
     );
 
+}
 
-revealSections.forEach(function(section) {
 
-    revealObserver.observe(section);
-
-});
 /* =====================================================
-   UPGRADE 9 — SECRET SUNSHINE
+   SECRET SUNSHINE EASTER EGG
 ===================================================== */
 
 function openSunshineSecret() {
@@ -160,7 +255,9 @@ function openSunshineSecret() {
 
     if (secret) {
 
-        secret.classList.add("active");
+        secret.classList.add(
+            "active"
+        );
 
     }
 
@@ -176,14 +273,16 @@ function closeSunshineSecret() {
 
     if (secret) {
 
-        secret.classList.remove("active");
+        secret.classList.remove(
+            "active"
+        );
 
     }
 
 }
 
 
-/* Close secret by clicking outside */
+/* Close secret popup when clicking outside */
 
 window.addEventListener(
     "click",
@@ -195,6 +294,7 @@ window.addEventListener(
             );
 
         if (
+            secret &&
             event.target === secret
         ) {
 
@@ -208,10 +308,17 @@ window.addEventListener(
 );
 
 
+/* =====================================================
+   FINAL CINEMATIC TOUCH
+===================================================== */
 
+window.addEventListener(
+    "load",
+    function() {
 
+        document.body.classList.add(
+            "page-loaded"
+        );
 
-
-
-
-
+    }
+);
