@@ -1472,3 +1472,97 @@ button {
     box-shadow:
         0 20px 50px rgba(255, 210, 80, 0.14);
 }
+/* =====================================================
+   UPGRADE 5 — CINEMATIC TRANSITION POLISH
+===================================================== */
+
+#episode-transition {
+    background:
+        radial-gradient(
+            circle at center,
+            #151515 0%,
+            #050505 45%,
+            #000000 100%
+        );
+}
+
+
+/* Subtle red glow */
+
+#episode-transition::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 500px;
+    height: 500px;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(229, 9, 20, 0.12),
+            transparent 65%
+        );
+
+    filter: blur(30px);
+
+    pointer-events: none;
+
+}
+
+
+/* Keep content above glow */
+
+.transition-content {
+
+    position: relative;
+
+    z-index: 2;
+
+}
+
+
+/* Loading dots */
+
+.transition-content span {
+
+    animation:
+        loadingPulse
+        1.2s ease-in-out
+        infinite alternate;
+
+}
+
+
+/* Episode title glow */
+
+.transition-content h2 {
+
+    text-shadow:
+        0 0 30px
+        rgba(255,255,255,0.12);
+
+}
+
+
+/* =====================================================
+   ANIMATION
+===================================================== */
+
+@keyframes loadingPulse {
+
+    from {
+        opacity: 0.35;
+    }
+
+    to {
+        opacity: 1;
+    }
+
+}
